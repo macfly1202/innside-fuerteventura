@@ -1,0 +1,43 @@
+# INNSiDE Fuerteventura — Guide éditorial indépendant
+
+> Analyse détaillée et indépendante de l'INNSiDE by Meliá Fuerteventura, hôtel 4★ adults-only seul posé sur la lagune de Sotavento. Basée sur un séjour personnel (avril 2025) et sur l'agrégation de 1 470+ avis voyageurs.
+
+L'INNSiDE Fuerteventura est un hôtel 4 étoiles réservé aux adultes de 16 ans et plus, situé directement sur la plage de Sotavento, dans le parc naturel de Jandía, au sud de l'île de Fuerteventura (Canaries, Espagne). C'est le seul établissement hôtelier posé sur les rives de la lagune intermittente de Sotavento, l'un des spots de windsurf, kitesurf et wingfoil les plus renommés au monde. Note consolidée : 4.6/5 sur 1 470 avis Google.
+
+## Sections principales
+
+- [Accueil](https://innside-fuerteventura.netlify.app/): vue d'ensemble immersive de l'hôtel et du lieu
+- [L'essence du lieu](https://innside-fuerteventura.netlify.app/#arrival): refuge bohème-chic face à l'Atlantique sauvage
+- [The Studio vue mer](https://innside-fuerteventura.netlify.app/#suite): catégorie de chambre signature, 54 m², baignoire îlot, balcon vitré
+- [Carnet visuel](https://innside-fuerteventura.netlify.app/#gallery): galerie photo du séjour
+- [Soirées live](https://innside-fuerteventura.netlify.app/#live): musique acoustique hebdomadaire
+- [Les glisses à Sotavento](https://innside-fuerteventura.netlify.app/#glisse): kitesurf, wingfoil, windsurf au centre René Egli by Meliá
+- [Gastronomie](https://innside-fuerteventura.netlify.app/#gastro): The Kitchen, Shack beach club, Ginger Lounge
+- [Avis voyageurs](https://innside-fuerteventura.netlify.app/#ratings): témoignages traduits, sources multiples
+- [FAQ](https://innside-fuerteventura.netlify.app/#faq): questions fréquentes sur l'hôtel et le spot
+- [Emplacement](https://innside-fuerteventura.netlify.app/#location): coordonnées, distances, accès
+
+## Faits structurés
+
+- Nom officiel : INNSiDE by Meliá Fuerteventura
+- Classification : 4 étoiles, adults only (16+)
+- Adresse : Playa Barca s/n, 35627 Pájara, Fuerteventura, Espagne
+- Coordonnées : 28.183333°N, -14.233333°E
+- Téléphone : +34 928 16 86 00
+- Nombre de chambres : 144
+- Check-in / Check-out : 15:00 / 12:00
+- Distance plage : 0,2 km
+- Distance aéroport FUE : 80 km (~1h)
+- Note Google : 4,6/5 (1 470 avis)
+- Note Tripadvisor : excellent (1 169 avis)
+- Note US News : 9,0/10
+- Groupe : Meliá Hotels International
+- Marque : INNSiDE by Meliá
+- Certifications : Ecostars®
+- Pet-friendly : oui
+
+## Optional
+
+- [Site officiel Meliá](https://www.melia.com/fr/hotels/espagne/fuerteventura/innside-fuerteventura): source primaire, réservation directe
+- [llms-full.txt](https://innside-fuerteventura.netlify.app/llms-full.txt): version complète avec contenu extractible
+- [Sitemap XML](https://innside-fuerteventura.netlify.app/sitemap.xml)

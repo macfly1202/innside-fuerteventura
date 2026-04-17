@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://innside-fuerteventura.netlify.app/</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://innside-fuerteventura.netlify.app/photos/hero_sotavento.jpg</image:loc>
+      <image:title>Lagune de Sotavento vue depuis l'INNSiDE Fuerteventura</image:title>
+      <image:caption>La plage de Sotavento de Jandía, palmiers et kitesurfers au loin</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://innside-fuerteventura.netlify.app/photos/entree_hotel_aube.jpg</image:loc>
+      <image:title>Entrée de l'INNSiDE Fuerteventura à l'aube</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://innside-fuerteventura.netlify.app/photos/architecture_verriere.jpg</image:loc>
+      <image:title>Architecture verrière du Ginger Lounge</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://innside-fuerteventura.netlify.app/photos/melia_kitesurf_sotavento.jpg</image:loc>
+      <image:title>Kitesurfers sur la lagune de Sotavento</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://innside-fuerteventura.netlify.app/photos/bar_moscow_mule_sunset.jpg</image:loc>
+      <image:title>Moscow Mule au coucher de soleil au Ginger Lounge</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://innside-fuerteventura.netlify.app/photos/buffet_charcuterie.jpg</image:loc>
+      <image:title>Buffet de charcuteries ibériques au petit-déjeuner The Kitchen</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://innside-fuerteventura.netlify.app/photos/cesar_salade.jpg</image:loc>
+      <image:title>Salade César poulet croustillant au Shack beach club</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://innside-fuerteventura.netlify.app/photos/concert_nuit.jpg</image:loc>
+      <image:title>Concert live acoustique de nuit sur la terrasse</image:title>
+    </image:image>
+  </url>
+
+</urlset>

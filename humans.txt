@@ -1,0 +1,22 @@
+/* TEAM */
+
+    Auteur : JMP
+    Rôle : Rédaction éditoriale, photos, design, développement
+    Localisation : Paris, France
+    Site : https://innside-fuerteventura.netlify.app/
+
+/* SITE */
+
+    Dernière mise à jour : 2026-04-17
+    Langue : Français
+    Standards : HTML5, CSS3, JSON-LD, llms.txt
+    Composants : Vanilla JS, IntersectionObserver, scroll-driven animations
+    Typographie : Fraunces (Google Fonts), Archivo (Google Fonts), Italiana (Google Fonts)
+    Hébergement : Netlify
+    Affiliation : Aucune. Guide éditorial indépendant.
+
+/* SOURCES */
+
+    Site officiel : melia.com
+    Avis : Google Reviews, Tripadvisor, Expedia, US News Travel
+    Données spot Sotavento : René Egli Center, archives PWA
