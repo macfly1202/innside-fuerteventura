@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<title>INNSiDE Fuerteventura — An Adults-Only Sanctuary</title>
+<meta name="description" content="Au bord de la lagune de Sotavento, dans le parc naturel de Jandía. Un refuge bohème-chic réservé aux adultes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,200;1,9..144,300;1,9..144,400&family=Archivo:wght@300;400;500;600;700&family=Italiana&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="photos/hero_sotavento.jpg" fetchpriority="high">
+<link rel="preload" as="video" href="photos/concert_short.mp4" type="video/mp4">
+
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --bg: #0a0a0a;
+  --bg-elev: #141414;
+  --bg-cream: #f5f1ea;
+  --fg: #f5f1ea;
+  --fg-dim: rgba(245, 241, 234, 0.65);
+  --fg-faint: rgba(245, 241, 234, 0.35);
+  --gold: #c9a96e;
+  --gold-deep: #8a7345;
+  --terracotta: #c16b4d;
+  --ocean: #3a5d6b;
+  --ink: #0a0a0a;
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Archivo', system-ui, sans-serif;
+  --font-mono: 'Italiana', serif;
+
+  --edge: clamp(1.5rem, 4vw, 4rem);
+  --max: 1600px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.5, 0, 0.75, 0);
+}
+
+/* ============================================================
+   RESET + FOUNDATION
+   ============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+*::selection { background: var(--gold); color: var(--ink); }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-padding-top: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--fg);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* film grain */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+img, video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ============================================================
+   NAV (sticky top)
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.2rem var(--edge);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+  background: linear-gradient(180deg, rgba(10,10,10,0.85) 0%, transparent 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 0.4s, padding 0.4s;
+}
+
+.nav.scrolled {
+  background: rgba(10, 10, 10, 0.92);
+  padding: 0.9rem var(--edge);
+}
+
+.nav-logo {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  letter-spacing: 0.4em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.nav-links a {
+  opacity: 0.6;
+  transition: opacity 0.3s;
+  position: relative;
+}
+
+.nav-links a:hover { opacity: 1; }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -0.4rem;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.4s var(--ease);
+}
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--fg);
+  border-radius: 50px;
+  transition: all 0.3s;
+}
+.nav-cta:hover {
+  background: var(--fg);
+  color: var(--ink);
+}
+
+/* progress bar */
+.progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--gold);
+  width: 0%;
+  z-index: 101;
+  transition: width 0.1s linear;
+}
+
+/* ============================================================
+   HERO — Sotavento full-bleed cinematic
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  background: var(--bg);
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: kenburns 20s ease-out forwards;
+}
+
+@keyframes kenburns {
+  from { transform: scale(1.15); }
+  to { transform: scale(1); }
+}
+
+.hero-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg,
+      rgba(10,10,10,0.35) 0%,
+      rgba(10,10,10,0) 30%,
+      rgba(10,10,10,0) 55%,
+      rgba(10,10,10,0.85) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 var(--edge) 6rem;
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.hero-kicker {
+  font-size: 0.7rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  opacity: 0;
+  animation: slideUp 1s 0.3s var(--ease) forwards;
+}
+
+.hero-kicker::before {
+  content: '';
+  width: 60px; height: 1px;
+  background: var(--gold);
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(3rem, 10vw, 10rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: slideUp 1.2s 0.5s var(--ease) forwards;
+}
+
+.hero h1 em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+  font-variation-settings: "opsz" 144;
+}
+
+.hero-sub {
+  max-width: 520px;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  color: var(--fg-dim);
+  line-height: 1.7;
+  opacity: 0;
+  animation: slideUp 1s 0.8s var(--ease) forwards;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  opacity: 0;
+  animation: slideUp 1s 1.5s var(--ease) forwards;
+}
+
+.scroll-hint::after {
+  content: '';
+  width: 1px; height: 50px;
+  background: linear-gradient(180deg, var(--fg-faint), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.3); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   CHAPTER — pattern partagé
+   ============================================================ */
+.chapter {
+  position: relative;
+  padding: 10rem var(--edge);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.chapter-number {
+  font-family: var(--font-mono);
+  font-size: clamp(4rem, 8vw, 8rem);
+  color: var(--gold);
+  opacity: 0.2;
+  line-height: 1;
+  margin-bottom: 2rem;
+}
+
+.chapter-kicker {
+  font-size: 0.7rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.chapter h2 {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  max-width: 900px;
+}
+
+.chapter h2 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+/* reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
+  will-change: opacity, transform;
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s var(--ease), transform 1s var(--ease);
+}
+.reveal-stagger.in > *:nth-child(1) { transition-delay: 0.05s; }
+.reveal-stagger.in > *:nth-child(2) { transition-delay: 0.15s; }
+.reveal-stagger.in > *:nth-child(3) { transition-delay: 0.25s; }
+.reveal-stagger.in > *:nth-child(4) { transition-delay: 0.35s; }
+.reveal-stagger.in > *:nth-child(5) { transition-delay: 0.45s; }
+.reveal-stagger.in > *:nth-child(6) { transition-delay: 0.55s; }
+.reveal-stagger.in > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   CHAPTER 01 — L'arrivée (split layout)
+   ============================================================ */
+.arrival {
+  background: var(--bg);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  min-height: 100dvh;
+  gap: 0;
+  padding: 0;
+  max-width: none;
+}
+
+.arrival-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem var(--edge);
+  max-width: 780px;
+  margin-left: auto;
+}
+
+.arrival-text .lead {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  font-weight: 300;
+  line-height: 1.4;
+  margin-bottom: 2rem;
+  color: var(--fg);
+}
+
+.arrival-text .lead em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.arrival-text p {
+  color: var(--fg-dim);
+  margin-bottom: 1.3rem;
+  line-height: 1.8;
+  max-width: 520px;
+  font-size: 1rem;
+}
+
+.arrival-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.tag {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--fg-faint);
+  border-radius: 50px;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+.tag:hover { border-color: var(--gold); color: var(--gold); }
+.tag.accent { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+
+.arrival-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.arrival-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 10s ease-out;
+}
+
+/* parallax target */
+.arrival-img.in img {
+  transform: scale(1.08);
+}
+
+/* ============================================================
+   STICKY CINEMATIC SECTION — scrolls past a full-bleed image
+   ============================================================ */
+.sticky-scene {
+  position: relative;
+  height: 200vh; /* on scrolle 2 écrans */
+}
+
+.sticky-scene-inner {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.sticky-scene img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+.sticky-scene .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0) 40%, rgba(10,10,10,0.7) 100%);
+  z-index: 2;
+}
+
+.sticky-scene .caption {
+  position: absolute;
+  z-index: 3;
+  bottom: 15%;
+  left: var(--edge);
+  right: var(--edge);
+  max-width: 900px;
+}
+
+.sticky-scene .caption h3 {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(2.5rem, 7vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+
+.sticky-scene .caption h3 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.sticky-scene .caption .sub {
+  margin-top: 1.5rem;
+  max-width: 500px;
+  color: var(--fg-dim);
+  font-size: 1rem;
+}
+
+/* ============================================================
+   CHAPTER — Suite : The Studio (votre chambre)
+   ============================================================ */
+.suite {
+  background: var(--bg-cream);
+  color: var(--ink);
+  padding: 10rem var(--edge);
+}
+
+.suite-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.suite-header {
+  margin-bottom: 4rem;
+}
+
+.suite .chapter-kicker { color: var(--gold-deep); }
+.suite h2 { color: var(--ink); }
+.suite h2 em { color: var(--terracotta); }
+
+.suite-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.suite-main-img {
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: #e8dfd0;
+}
+
+.suite-main-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 1.5s var(--ease);
+}
+.suite-main-img:hover img { transform: scale(1.04); }
+
+.suite-body {
+  padding-top: 2rem;
+}
+
+.suite-body h3 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.suite-body .lead {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 2.5rem;
+}
+.suite-body .lead em { font-style: italic; color: var(--terracotta); }
+
+.suite-specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid rgba(10,10,10,0.15);
+  border-left: 1px solid rgba(10,10,10,0.15);
+  margin-bottom: 2.5rem;
+}
+
+.suite-specs .spec {
+  padding: 1.2rem 1.3rem;
+  border-right: 1px solid rgba(10,10,10,0.15);
+  border-bottom: 1px solid rgba(10,10,10,0.15);
+}
+
+.suite-specs .spec span {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.suite-specs .spec strong {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.suite-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem 1.5rem;
+  margin-bottom: 2.5rem;
+  font-size: 0.9rem;
+  color: rgba(10,10,10,0.7);
+}
+
+.suite-tip {
+  background: rgba(193,107,77,0.08);
+  padding: 1.5rem;
+  border-left: 3px solid var(--terracotta);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.suite-tip-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+/* ============================================================
+   GALLERY — bento asymmetric
+   ============================================================ */
+.gallery {
+  background: var(--bg);
+  padding: 10rem var(--edge);
+}
+
+.gallery-header {
+  max-width: var(--max);
+  margin: 0 auto 5rem;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 90px;
+  gap: 1rem;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.gallery-item {
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-elev);
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 1.4s var(--ease), filter 0.6s;
+  filter: brightness(0.92);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
+  filter: brightness(1.05);
+}
+
+.gallery-item .caption {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+  background: linear-gradient(180deg, transparent 50%, rgba(10,10,10,0.9) 100%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.gallery-item:hover .caption { opacity: 1; }
+
+.gallery-item .caption span {
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--fg);
+  font-weight: 500;
+}
+
+/* bento placement */
+.b1 { grid-column: span 7; grid-row: span 6; }
+.b2 { grid-column: span 5; grid-row: span 4; }
+.b3 { grid-column: span 5; grid-row: span 5; }
+.b4 { grid-column: span 4; grid-row: span 4; }
+.b5 { grid-column: span 4; grid-row: span 5; }
+.b6 { grid-column: span 4; grid-row: span 4; }
+.b7 { grid-column: span 5; grid-row: span 5; }
+.b8 { grid-column: span 4; grid-row: span 4; }
+.b9 { grid-column: span 3; grid-row: span 4; }
+.b10 { grid-column: span 6; grid-row: span 5; }
+.b11 { grid-column: span 6; grid-row: span 4; }
+
+/* ============================================================
+   VIDEO — full-bleed with autoplay on view
+   ============================================================ */
+.video-scene {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.video-scene video {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.video-scene .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(10,10,10,0.4) 0%,
+    rgba(10,10,10,0.1) 30%,
+    rgba(10,10,10,0.1) 60%,
+    rgba(10,10,10,0.9) 100%);
+  z-index: 2;
+}
+
+.video-scene .content {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--edge);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.video-scene h2 {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(2.5rem, 7vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  max-width: 900px;
+  margin-bottom: 1.5rem;
+}
+
+.video-scene h2 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.video-scene .sub {
+  color: var(--fg-dim);
+  max-width: 520px;
+  font-size: 1rem;
+  margin-bottom: 6rem;
+}
+
+.live-badge {
+  position: absolute;
+  top: 6rem;
+  right: var(--edge);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--fg);
+  z-index: 4;
+}
+
+.live-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #e74c3c;
+  box-shadow: 0 0 0 0 rgba(231,76,60,0.7);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(231,76,60,0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(231,76,60,0); }
+  100% { box-shadow: 0 0 0 0 rgba(231,76,60,0); }
+}
+
+/* ============================================================
+   GASTRONOMIE — rhythm section
+   ============================================================ */
+.gastro {
+  background: var(--bg);
+  padding: 10rem 0;
+}
+
+.gastro-header {
+  max-width: var(--max);
+  margin: 0 auto 6rem;
+  padding: 0 var(--edge);
+}
+
+.gastro-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 80vh;
+  align-items: center;
+}
+
+.gastro-row.reverse {
+  grid-template-columns: 1fr 1fr;
+}
+.gastro-row.reverse .gastro-media {
+  order: 2;
+}
+
+.gastro-media {
+  height: 80vh;
+  overflow: hidden;
+}
+
+.gastro-media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease);
+}
+
+.gastro-row:hover .gastro-media img {
+  transform: scale(1.05);
+}
+
+.gastro-text {
+  padding: 3rem var(--edge);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.gastro-text .counter {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.gastro-text h3 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.gastro-text h3 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.gastro-text p {
+  color: var(--fg-dim);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  max-width: 480px;
+}
+
+/* ============================================================
+   RATING / TESTIMONIALS
+   ============================================================ */
+.ratings {
+  background: var(--bg-cream);
+  color: var(--ink);
+  padding: 10rem var(--edge);
+  text-align: center;
+}
+
+.ratings-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.big-rating {
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 18vw, 18rem);
+  font-weight: 200;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  margin-bottom: 2rem;
+}
+
+.big-rating em {
+  font-style: italic;
+  color: var(--terracotta);
+  font-size: 0.5em;
+  vertical-align: super;
+}
+
+.rating-meta {
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 6rem;
+}
+
+.rating-stars {
+  color: var(--gold-deep);
+  font-size: 1.5rem;
+  letter-spacing: 0.3em;
+  margin: 1rem 0;
+}
+
+.quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  text-align: left;
+  margin-top: 3rem;
+}
+
+.quote-card {
+  background: rgba(10,10,10,0.04);
+  padding: 2.5rem;
+  position: relative;
+  transition: transform 0.5s var(--ease), background 0.4s;
+}
+
+.quote-card:hover {
+  transform: translateY(-6px);
+  background: rgba(10,10,10,0.07);
+}
+
+.quote-card::before {
+  content: '"';
+  font-family: var(--font-display);
+  font-size: 6rem;
+  line-height: 1;
+  position: absolute;
+  top: 0.8rem; left: 1.5rem;
+  color: var(--gold);
+  opacity: 0.25;
+  font-style: italic;
+}
+
+.quote-card blockquote {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--ink);
+  font-style: italic;
+  font-weight: 300;
+  margin: 1.5rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.quote-author {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(10,10,10,0.1);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  gap: 1rem;
+}
+
+.quote-author strong {
+  font-family: var(--font-display);
+  text-transform: none;
+  font-style: italic;
+  font-size: 0.95rem;
+  letter-spacing: 0;
+  font-weight: 400;
+  display: block;
+}
+
+.quote-translated {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  font-weight: 500;
+  margin-top: 0.35rem;
+  opacity: 0.75;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.quote-translated::before {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 1px;
+  background: var(--gold-deep);
+  opacity: 0.6;
+}
+
+.quote-source { color: var(--gold-deep); font-weight: 500; }
+
+/* ============================================================
+   LOCATION
+   ============================================================ */
+.location {
+  background: var(--bg);
+  padding: 10rem var(--edge);
+}
+
+.loc-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.loc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+.loc-img {
+  aspect-ratio: 4/5;
+  overflow: hidden;
+}
+
+.loc-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.loc-text h3 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+}
+
+.loc-text h3 em { font-style: italic; color: var(--gold); }
+
+.loc-coords {
+  margin: 2.5rem 0;
+  padding: 2rem;
+  border: 1px solid var(--fg-faint);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.loc-coords div {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.loc-coords div span {
+  display: block;
+  color: var(--gold);
+  font-size: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.loc-coords div strong {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--fg);
+}
+
+.distances {
+  margin-top: 2rem;
+}
+
+.distance-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--fg-faint);
+  font-size: 0.9rem;
+  color: var(--fg-dim);
+}
+
+.distance-row:last-child { border-bottom: none; }
+
+.distance-row strong {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--gold);
+}
+
+/* ============================================================
+   CTA — closing cinematic
+   ============================================================ */
+.cta {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.cta-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.cta-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,0.7), rgba(10,10,10,0.4));
+}
+
+.cta-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 var(--edge);
+  max-width: 1000px;
+}
+
+.cta h2 {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(3rem, 9vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin-bottom: 2rem;
+}
+
+.cta h2 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.cta p {
+  color: var(--fg-dim);
+  font-size: 1.1rem;
+  max-width: 580px;
+  margin: 0 auto 3.5rem;
+}
+
+.cta-btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 1.2rem 2.8rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 50px;
+  transition: all 0.4s var(--ease);
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--fg);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--fg);
+}
+
+.btn-secondary:hover {
+  background: var(--fg);
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--bg);
+  color: var(--fg-faint);
+  padding: 3rem var(--edge);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 968px) {
+  .nav-links a:not(.nav-cta) { display: none; }
+  .arrival { grid-template-columns: 1fr; min-height: auto; }
+  .arrival-img { min-height: 60vh; order: -1; }
+  .arrival-text { padding: 5rem var(--edge); margin: 0; }
+  .chapter { padding: 6rem var(--edge); }
+  .suite { padding: 6rem var(--edge); }
+  .suite-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .gallery { padding: 6rem var(--edge); }
+  .gallery-grid {
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 70px;
+  }
+  .b1, .b2, .b3, .b4, .b5, .b6, .b7, .b8, .b9, .b10, .b11 {
+    grid-column: span 6;
+    grid-row: span 4;
+  }
+  .gastro { padding: 6rem 0; }
+  .gastro-row, .gastro-row.reverse {
+    grid-template-columns: 1fr;
+  }
+  .gastro-media { height: 60vh; }
+  .gastro-text { padding: 3rem var(--edge); }
+  .gastro-row.reverse .gastro-media { order: 0; }
+  .ratings { padding: 6rem var(--edge); }
+  .quotes-grid { grid-template-columns: 1fr; }
+  .location { padding: 6rem var(--edge); }
+  .loc-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .loc-coords { grid-template-columns: 1fr; }
+  .suite-features { grid-template-columns: 1fr; }
+  .sticky-scene { height: auto; }
+  .sticky-scene-inner { position: relative; height: 80vh; }
+  footer { flex-direction: column; text-align: center; }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .hero-media img { animation: none; }
+  .reveal, .reveal-stagger > * { opacity: 1; transform: none; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============ PROGRESS ============ -->
+<div class="progress" id="progress"></div>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">INNSiDE</div>
+  <div class="nav-links">
+    <a href="#arrival">L'essence</a>
+    <a href="#suite">La suite</a>
+    <a href="#gallery">Carnet</a>
+    <a href="#live">Live</a>
+    <a href="#ratings">Avis</a>
+    <a href="#cta" class="nav-cta">Réserver</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-media">
+    <img src="photos/hero_sotavento.jpg" alt="Lagune de Sotavento, palmiers et kitesurfs" fetchpriority="high">
+  </div>
+  <div class="hero-content">
+    <div class="hero-kicker">Fuerteventura · Adults Only · 4★</div>
+    <h1>Là où le vent<br>écrit le <em>silence</em>.</h1>
+    <p class="hero-sub">
+      Au bord unique de la lagune intermittente de Sotavento, un refuge bohème-chic
+      réservé aux adultes où le design d'avant-garde rencontre la nature à l'état brut.
+    </p>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ============ ARRIVAL ============ -->
+<section class="arrival" id="arrival">
+  <div class="arrival-text">
+    <div class="chapter-kicker reveal">Chapitre 01 — L'essence</div>
+    <h2 class="reveal" style="font-family: var(--font-display); font-weight: 200; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 2rem;">
+      Un <em style="font-style: italic; color: var(--gold);">refuge</em> face<br>à l'Atlantique sauvage.
+    </h2>
+    <p class="lead reveal">
+      Le <em>seul</em> hôtel posé sur les rives de la lagune de Sotavento. Un paysage unique,
+      sauvage, préservé, où le vent, l'eau et le sable composent une géométrie changeante.
+    </p>
+    <p class="reveal">
+      Eaux cristallines, sable blanc, voiles de kitesurf qui dansent à l'horizon. INNSiDE
+      Fuerteventura est pensé comme un manifeste : celui d'un tourisme ralenti, d'une reconnexion
+      profonde avec l'océan, d'une élégance bohème dépouillée de l'ostentatoire.
+    </p>
+    <p class="reveal">
+      Réservé aux adultes de 16 ans et plus. Design intérieur raffiné, terrasses ouvertes sur
+      l'infini, cuisine bio, yoga face au lever du soleil. Pas d'horaires, pas de stress.
+    </p>
+    <div class="arrival-tags reveal-stagger">
+      <span class="tag accent">Adults Only 16+</span>
+      <span class="tag">Piscine à débordement</span>
+      <span class="tag">Accès plage direct</span>
+      <span class="tag">Yoga & Pilates</span>
+      <span class="tag">Pet-friendly</span>
+      <span class="tag">Certifié Ecostars®</span>
+      <span class="tag">René Egli by Meliá</span>
+    </div>
+  </div>
+  <div class="arrival-img reveal">
+    <img src="photos/entree_hotel_aube.jpg" alt="Entrée de l'hôtel à l'aube">
+  </div>
+</section>
+
+<!-- ============ STICKY CINEMATIC ============ -->
+<section class="sticky-scene">
+  <div class="sticky-scene-inner">
+    <img src="photos/architecture_verriere.jpg" alt="Architecture verrière au crépuscule">
+    <div class="overlay"></div>
+    <div class="caption reveal">
+      <h3>L'architecture<br>comme <em>invitation</em>.</h3>
+      <p class="sub">Verrières industrielles, lanternes dorées, lignes épurées. Le bâtiment respire avec le paysage.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUITE / VOTRE CHAMBRE ============ -->
+<section class="suite" id="suite">
+  <div class="suite-inner">
+    <div class="suite-header reveal">
+      <div class="chapter-kicker">Chapitre 02 — Votre hébergement</div>
+      <h2>The Studio,<br><em>vue sur la mer</em>.</h2>
+    </div>
+
+    <div class="suite-grid">
+      <div class="suite-main-img reveal">
+        <img src="https://dam.melia.com/melia/accounts/f8/4000018/projects/127/assets/52/87932/25a109821ce4de3b2dc66800451c70ba-1646296927.jpg" alt="The Studio avec vue sur la mer" loading="lazy">
+      </div>
+
+      <div class="suite-body reveal">
+        <h3>Studio · 54 m²</h3>
+        <p class="lead">
+          Un espace unique qui réunit chambre, petit salon, baignoire îlot et balcon vitré
+          donnant directement sur l'océan Atlantique. Pour un séjour
+          <em>relaxant et suspendu</em>.
+        </p>
+
+        <div class="suite-specs">
+          <div class="spec"><span>Surface</span><strong>54 m²</strong></div>
+          <div class="spec"><span>Couchage</span><strong>1 king · 2 singles</strong></div>
+          <div class="spec"><span>Vue</span><strong>Océan Atlantique</strong></div>
+          <div class="spec"><span>Balcon</span><strong>Vitré / baie</strong></div>
+        </div>
+
+        <div class="suite-features">
+          <div>◦ Baignoire îlot vue mer</div>
+          <div>◦ Petit salon intégré</div>
+          <div>◦ Minibar gratuit réapprovisionné</div>
+          <div>◦ Articles écoresponsables</div>
+          <div>◦ Climatisation régulable</div>
+          <div>◦ Wi-Fi haut débit</div>
+          <div>◦ TV écran plat</div>
+          <div>◦ Coffre-fort & insonorisation</div>
+        </div>
+
+        <div class="suite-tip">
+          <span class="suite-tip-label">Conseil voyageurs</span>
+          Les chambres côté mer sont celles que recommandent systématiquement US News et Tripadvisor.
+          Le balcon vitré permet de profiter de la vue même par vent soutenu à Sotavento.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="gallery" id="gallery">
+  <div class="gallery-header reveal">
+    <div class="chapter-kicker">Chapitre 03 — Le carnet</div>
+    <h2>Les images parlent<br><em>plus bas</em> que les mots.</h2>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item b1"><img src="photos/hero_sotavento.jpg" alt="Sotavento" loading="lazy"><div class="caption"><span>Sotavento · palmiers & kitesurfs</span></div></div>
+    <div class="gallery-item b2"><img src="photos/bar_moscow_mule_sunset.jpg" alt="Moscow Mule" loading="lazy"><div class="caption"><span>Moscow Mule · golden hour</span></div></div>
+    <div class="gallery-item b3"><img src="photos/musique_live_blue.jpg" alt="Musique live" loading="lazy"><div class="caption"><span>Acoustique · heure bleue</span></div></div>
+    <div class="gallery-item b4"><img src="photos/apero_gin_ocean.jpg" alt="Apéro gin" loading="lazy"><div class="caption"><span>Apéro · face océan</span></div></div>
+    <div class="gallery-item b5"><img src="photos/buffet_fruits.jpg" alt="Buffet fruits" loading="lazy"><div class="caption"><span>The Kitchen · jus frais</span></div></div>
+    <div class="gallery-item b6"><img src="photos/buffet_charcuterie.jpg" alt="Charcuteries" loading="lazy"><div class="caption"><span>Charcuteries ibériques</span></div></div>
+    <div class="gallery-item b7"><img src="photos/cesar_salade.jpg" alt="Salade César" loading="lazy"><div class="caption"><span>Shack · salade César</span></div></div>
+    <div class="gallery-item b8"><img src="photos/buffet_fromages.jpg" alt="Fromages" loading="lazy"><div class="caption"><span>Plateau de fromages</span></div></div>
+    <div class="gallery-item b9"><img src="photos/panneau_innside.jpg" alt="Panneau hôtel" loading="lazy"><div class="caption"><span>INNSiDE +16</span></div></div>
+    <div class="gallery-item b10"><img src="photos/architecture_verriere.jpg" alt="Architecture" loading="lazy"><div class="caption"><span>Ginger Lounge · crépuscule</span></div></div>
+    <div class="gallery-item b11"><img src="photos/concert_nuit.jpg" alt="Concert nuit" loading="lazy"><div class="caption"><span>Concert live · nuit noire</span></div></div>
+  </div>
+</section>
+
+<!-- ============ VIDEO SCENE ============ -->
+<section class="video-scene" id="live">
+  <div class="live-badge">
+    <span class="live-dot"></span>
+    <span>Filmé sur place</span>
+  </div>
+  <video
+    id="heroVideo"
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    poster="photos/concert_video_poster.jpg"
+    data-autoplay>
+    <source src="photos/concert_short.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+  <div class="content">
+    <div class="chapter-kicker reveal" style="color: var(--gold);">Chapitre 04 — Les soirées</div>
+    <h2 class="reveal">Les <em>soirées</em> qui durent,<br>la mer en fond sonore.</h2>
+    <p class="sub reveal">
+      Musique live chaque semaine — swing & jive le mercredi, pop rock acoustique vendredi
+      et samedi. Entrée gratuite, ciel étoilé, chauffages extérieurs dorés.
+    </p>
+  </div>
+</section>
+
+<!-- ============ GASTRONOMIE ============ -->
+<section class="gastro">
+  <div class="gastro-header reveal">
+    <div class="chapter-kicker">Chapitre 05 — À table</div>
+    <h2 style="font-family: var(--font-display); font-weight: 200; font-size: clamp(2.5rem, 6vw, 6rem); line-height: 0.95; letter-spacing: -0.03em;">
+      Trois lieux, trois<br><em style="font-style: italic; color: var(--gold);">intentions</em>.
+    </h2>
+  </div>
+
+  <div class="gastro-row">
+    <div class="gastro-media reveal">
+      <img src="photos/buffet_charcuterie.jpg" alt="Buffet charcuterie" loading="lazy">
+    </div>
+    <div class="gastro-text reveal">
+      <div class="counter">01 / The Kitchen</div>
+      <h3>Buffet <em>healthy</em><br>face à la mer.</h3>
+      <p>
+        Produits locaux, bio, de saison. Omelettes et pancakes préparés en direct. Sélection
+        de cafés, thés et champagne au petit-déjeuner. Vue panoramique sur la plage de Sotavento.
+      </p>
+    </div>
+  </div>
+
+  <div class="gastro-row reverse">
+    <div class="gastro-media reveal">
+      <img src="photos/cesar_salade.jpg" alt="Salade César Shack" loading="lazy">
+    </div>
+    <div class="gastro-text reveal">
+      <div class="counter">02 / Shack · beach club</div>
+      <h3>Apéritifs <em>audacieux</em><br>au bord de la piscine.</h3>
+      <p>
+        Salades santé, viandes grillées, tacos, poissons, desserts. Pour les longs déjeuners
+        qui glissent vers le soir, les pieds dans le sable, la lumière qui tombe.
+      </p>
+    </div>
+  </div>
+
+  <div class="gastro-row">
+    <div class="gastro-media reveal">
+      <img src="photos/apero_gin_ocean.jpg" alt="Apéro signature" loading="lazy">
+    </div>
+    <div class="gastro-text reveal">
+      <div class="counter">03 / Ginger Lounge</div>
+      <h3>Cocktails <em>raffinés</em>,<br>fenêtres sur Jandía.</h3>
+      <p>
+        Espace le plus détendu de l'hôtel. Cocktails signature, jus frais, ambiance sophistiquée.
+        Fenêtres du sol au plafond sur le parc naturel — surtout au coucher du soleil.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RATINGS ============ -->
+<section class="ratings" id="ratings">
+  <div class="ratings-inner">
+    <div class="chapter-kicker reveal" style="color: var(--gold-deep);">Chapitre 06 — Ce qu'en disent les voyageurs</div>
+    <div class="big-rating reveal">4.6<em>/5</em></div>
+    <div class="rating-stars reveal">★ ★ ★ ★ ★</div>
+    <div class="rating-meta reveal">1 470 avis Google · 1 169 Tripadvisor · 9.0/10 US News</div>
+
+    <div class="quotes-grid reveal-stagger">
+      <div class="quote-card">
+        <blockquote>
+          Des vacances absolument de rêve ! Le buffet du petit-déjeuner est simplement de classe mondiale.
+          Notre chambre était top, le balcon tout simplement imbattable. Absolument recommandé.
+        </blockquote>
+        <div class="quote-author">
+          <div>
+            <strong>Femida</strong>
+            <div class="quote-translated">Traduit de l'allemand</div>
+          </div>
+          <div class="quote-source">Google · Avril 2026</div>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <blockquote>
+          Un super hôtel 4★ qui en vaut 5★. Très accueillant, très propre. On y mange très bien.
+          Ils sont à vos services tout le temps.
+        </blockquote>
+        <div class="quote-author">
+          <div>
+            <strong>Voyageur FR</strong>
+            <div class="quote-translated">Avis original en français</div>
+          </div>
+          <div class="quote-source">Google Reviews</div>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <blockquote>
+          Le personnel était exceptionnellement gentil, chaleureux et professionnel. La cuisine était
+          remarquable : ingrédients frais, de qualité, magnifiquement préparés.
+        </blockquote>
+        <div class="quote-author">
+          <div>
+            <strong>Guest · Meliá</strong>
+            <div class="quote-translated">Traduit de l'anglais</div>
+          </div>
+          <div class="quote-source">Reviews officiels</div>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <blockquote>
+          La professeure de yoga est très inspirante et professionnelle. Les vues sont à tomber.
+          Nous y sommes venus plusieurs fois déjà et nous adorons l'atmosphère.
+        </blockquote>
+        <div class="quote-author">
+          <div>
+            <strong>Joanna</strong>
+            <div class="quote-translated">Traduit de l'anglais</div>
+          </div>
+          <div class="quote-source">Tripadvisor</div>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <blockquote>
+          Un nouveau séjour fantastique pour Noël ! Les récentes rénovations rafraîchissent
+          vraiment l'hôtel. Ces vues iconiques ne lassent jamais.
+        </blockquote>
+        <div class="quote-author">
+          <div>
+            <strong>Returning guest</strong>
+            <div class="quote-translated">Traduit de l'anglais</div>
+          </div>
+          <div class="quote-source">EasyJet Reviews</div>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <blockquote>
+          Pour nous, c'est tout simplement notre hôtel préféré, sur notre île préférée des
+          Canaries — Fuerteventura, à cet endroit si particulier de la plage de Sotavento.
+        </blockquote>
+        <div class="quote-author">
+          <div>
+            <strong>Hans & Maria</strong>
+            <div class="quote-translated">Traduit de l'allemand</div>
+          </div>
+          <div class="quote-source">Meliá Reviews</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCATION ============ -->
+<section class="location">
+  <div class="loc-inner">
+    <div class="reveal">
+      <div class="chapter-kicker">Chapitre 07 — L'emplacement</div>
+      <h2 style="font-family: var(--font-display); font-weight: 200; font-size: clamp(2.5rem, 6vw, 6rem); line-height: 0.95; letter-spacing: -0.03em;">
+        Au bord du <em style="font-style: italic; color: var(--gold);">monde</em>,<br>à l'abri de tout.
+      </h2>
+    </div>
+
+    <div class="loc-grid">
+      <div class="loc-img reveal">
+        <img src="photos/panneau_innside.jpg" alt="Panneau INNSiDE by Meliá" loading="lazy">
+      </div>
+      <div class="loc-text reveal">
+        <h3>Playa Barca,<br>sur le <em>fil</em> de Sotavento.</h3>
+        <p style="color: var(--fg-dim); line-height: 1.8;">
+          L'INNSiDE est le seul hôtel posé sur les rives de la lagune intermittente de Sotavento —
+          une plage de 5 miles, reconnue mondialement pour ses conditions idéales en kitesurf,
+          wingfoil et windsurf. À l'entrée du parc naturel de Jandía.
+        </p>
+
+        <div class="loc-coords">
+          <div><span>Adresse</span><strong>Playa Barca s/n</strong></div>
+          <div><span>Ville</span><strong>Pájara</strong></div>
+          <div><span>Check-in</span><strong>15:00</strong></div>
+          <div><span>Check-out</span><strong>12:00</strong></div>
+        </div>
+
+        <div class="distances">
+          <div class="distance-row"><span>Plage de Sotavento</span><strong>0,2 km</strong></div>
+          <div class="distance-row"><span>Costa Calma</span><strong>5 km</strong></div>
+          <div class="distance-row"><span>Aéroport</span><strong>80 km · 1h</strong></div>
+          <div class="distance-row"><span>Morro Jable</span><strong>~25 min</strong></div>
+          <div class="distance-row"><span>Parc naturel de Jandía</span><strong>à l'entrée</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA CLOSE ============ -->
+<section class="cta" id="cta">
+  <div class="cta-bg">
+    <img src="photos/hero_sotavento.jpg" alt="">
+  </div>
+  <div class="cta-inner">
+    <div class="chapter-kicker reveal" style="color: var(--gold);">L'invitation</div>
+    <h2 class="reveal">Partir. Respirer.<br><em>Revenir transformé.</em></h2>
+    <p class="reveal">
+      Réservez directement sur melia.com pour le meilleur tarif et les avantages exclusifs
+      MeliáRewards.
+    </p>
+    <div class="cta-btns reveal">
+      <a href="https://www.melia.com/fr/hotels/espagne/fuerteventura/innside-fuerteventura" class="btn btn-primary" target="_blank" rel="noopener">Réserver sur Meliá</a>
+      <a href="https://www.melia.com/fr/hotels/espagne/fuerteventura/innside-fuerteventura/galerie" class="btn btn-secondary" target="_blank" rel="noopener">Galerie complète</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div>© 2026 · Portfolio éditorial · INNSiDE Fuerteventura</div>
+  <div>Non-affilié · Sources : melia.com, Tripadvisor, Google Reviews</div>
+</footer>
+
+<!-- ============================================================
+     INTERACTIONS
+     ============================================================ -->
+<script>
+(() => {
+  // === Scroll progress bar ===
+  const progress = document.getElementById('progress');
+  const nav = document.getElementById('nav');
+
+  const updateScroll = () => {
+    const h = document.documentElement;
+    const scrollPct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    progress.style.width = `${scrollPct}%`;
+    nav.classList.toggle('scrolled', h.scrollTop > 60);
+  };
+
+  window.addEventListener('scroll', updateScroll, { passive: true });
+  updateScroll();
+
+  // === Reveal on scroll ===
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -80px 0px'
+  });
+
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
+    revealObserver.observe(el);
+  });
+
+  // === Video autoplay when in viewport ===
+  const videos = document.querySelectorAll('video[data-autoplay]');
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const v = entry.target;
+      if (entry.isIntersecting) {
+        // Only attempt play when enough is buffered
+        const tryPlay = () => {
+          v.play().catch(() => {
+            // autoplay blocked, ignore — the poster stays
+          });
+        };
+        if (v.readyState >= 2) tryPlay();
+        else v.addEventListener('loadeddata', tryPlay, { once: true });
+      } else {
+        v.pause();
+      }
+    });
+  }, {
+    threshold: 0.35,
+  });
+
+  videos.forEach(v => videoObserver.observe(v));
+
+  // === Smooth anchor nav (respect native smooth if supported) ===
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // === Subtle parallax on sticky-scene image (rAF, transform only) ===
+  const parallaxImg = document.querySelector('.sticky-scene img');
+  if (parallaxImg && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let ticking = false;
+    const parent = parallaxImg.closest('.sticky-scene');
+
+    const update = () => {
+      const rect = parent.getBoundingClientRect();
+      const winH = window.innerHeight;
+      // progression 0 -> 1 as we scroll past
+      const progress = Math.max(0, Math.min(1, (winH - rect.top) / (winH + rect.height)));
+      const scale = 1 + progress * 0.1;
+      const translateY = progress * 60;
+      parallaxImg.style.transform = `translateY(${translateY}px) scale(${scale})`;
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+    update();
+  }
+
+  // === Gallery: subtle mouse parallax on hover ===
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    const img = item.querySelector('img');
+    if (!img) return;
+    item.addEventListener('mousemove', (e) => {
+      const rect = item.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
+      const y = ((e.clientY - rect.top) / rect.height - 0.5) * 10;
+      img.style.transform = `scale(1.06) translate(${-x}px, ${-y}px)`;
+    });
+    item.addEventListener('mouseleave', () => {
+      img.style.transform = '';
+    });
+  });
+
+  // === Log for hacker curiosity ===
+  console.log(
+    '%c INNSiDE ' +
+    '%c Fuerteventura ',
+    'background:#c9a96e; color:#0a0a0a; padding:6px 10px; font-family:serif; font-size:14px;',
+    'background:#0a0a0a; color:#c9a96e; padding:6px 10px; font-family:serif; font-size:14px;'
+  );
+})();
+</script>
+
+</body>
+</html>
