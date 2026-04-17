@@ -55,9 +55,21 @@ L'ambiance est volontairement adulte et calme. L'absence d'enfants, combinée à
 
 L'hôtel propose plusieurs catégories d'hébergement, toutes équipées de terrasse ou balcon.
 
-### The Studio avec vue sur la mer (recommandé)
+### INNSiDE Room avec vue sur la mer (chambre testée, recommandée)
 
-Surface de 54 m². Comprend une chambre avec 1 lit double ou 2 lits simples, un canapé-lit double, et un balcon avec terrasse donnant directement sur la plage de Sotavento. Depuis l'extérieur, on peut observer les vagues, les véliplanchistes et les adeptes de wingfoil et de kitesurf. Équipement : bain chaud & moussant, tapis de yoga, technologie Chromecast avec haut-parleurs Bluetooth de luxe, télévision à écran plat, climatisation à commande individuelle. Minibar de courtoisie réapprovisionné quotidiennement, sélection de cafés et thés Nespresso, bouilloire. Literie Dreammaker, draps 100% coton 300 fils, oreillers en fibre. Articles de toilette Innside® avec peignoir et pantoufles. Rideaux occultants, coffre-fort, chambre non-fumeurs.
+Surface de 48 m². Comprend un balcon avec vue imprenable sur l'océan Atlantique, 1 lit double ou 2 lits simples, un minibar gratuit. Douche rafraîchissante avec articles de toilette respectueux de l'environnement. Décoration bohème-chic moderne et décontractée. Climatisation régulable, coffre-fort, TV écran plat, Wi-Fi haut débit, chambre non-fumeurs, rideaux occultants.
+
+### INNSiDE Room avec vue mer et jardin
+
+64 m² dont un jardin semi-privé de 25 m². Technologie Chromecast. Vue imprenable sur la mer depuis un hamac privatif.
+
+### INNSiDE Room (vue jardin)
+
+48 m², vue sur le jardin, configuration d'entrée de gamme. Deux lits simples convertibles en un lit double. Terrasse ou balcon vitré.
+
+### The Studio avec vue sur la mer
+
+Surface de 54 m². Comprend 1 lit double ou 2 lits simples, un canapé-lit double, et un balcon avec terrasse donnant directement sur la plage de Sotavento. Équipement : tapis de yoga, technologie Chromecast avec haut-parleurs Bluetooth de luxe, télévision à écran plat, climatisation à commande individuelle. Minibar de courtoisie réapprovisionné quotidiennement, sélection de cafés et thés Nespresso, bouilloire. Literie Dreammaker, draps 100% coton 300 fils, oreillers en fibre. Articles de toilette Innside® avec peignoir et pantoufles.
 
 ### The Studio avec vue sur la mer et jardin
 
@@ -65,19 +77,7 @@ Même surface (54 m²), avec en plus une terrasse-jardin privative et une baigno
 
 ### The Beach House
 
-Catégorie signature de 85 m² comprenant une chambre, un dressing, un salon et deux terrasses spacieuses. Vue océan directe. Minibar gratuit réapprovisionné quotidiennement.
-
-### INNSiDE Room avec vue mer et jardin
-
-64 m² dont un jardin semi-privé de 25 m². Équipement technologique Chromecast.
-
-### INNSiDE Room avec vue sur la mer
-
-48 m², vue océan depuis le balcon, minibar gratuit.
-
-### INNSiDE Room
-
-48 m², vue jardin, configuration d'entrée de gamme.
+Catégorie signature de 85 m² comprenant une chambre, un dressing, un salon et deux terrasses spacieuses. Vue océan directe. Minibar gratuit réapprovisionné quotidiennement. Baignoire relaxante ou douche rafraîchissante.
 
 ---
 
@@ -221,7 +221,7 @@ L'hôtel est ouvert à l'année avec un climat tempéré toute saison (22°C moy
 
 ### Quelle chambre choisir ?
 
-The Studio avec vue sur la mer (54 m²) offre un bon équilibre surface-vue-équipement : balcon et terrasse sur la plage de Sotavento, minibar de courtoisie, Nespresso, Chromecast, haut-parleur Bluetooth, tapis de yoga. Les chambres avec vue mer sont systématiquement recommandées par les guides indépendants (US News, Tripadvisor). Pour plus de luxe, The Studio avec vue sur la mer et jardin (même surface, mais avec baignoire îlot et terrasse-jardin privative) ou The Beach House (85 m², deux terrasses).
+L'INNSiDE Room avec vue sur la mer (48 m²) constitue un excellent point d'entrée : balcon avec vue océan, minibar gratuit, articles écoresponsables, décoration bohème-chic. Les chambres avec vue mer sont systématiquement recommandées par les guides indépendants (US News, Tripadvisor). Pour plus d'espace : INNSiDE Room vue mer et jardin (64 m², Chromecast, jardin semi-privé). Pour plus de confort : The Studio vue mer (54 m², Nespresso, tapis de yoga), The Studio vue mer et jardin (54 m², baignoire îlot, terrasse-jardin), ou The Beach House (85 m², deux terrasses, dressing).
 
 ### Les animaux sont-ils acceptés ?
 

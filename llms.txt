@@ -8,7 +8,7 @@ L'INNSiDE Fuerteventura est un hôtel 4 étoiles réservé aux adultes de 16 ans
 
 - [Accueil](https://innside-fuerteventura.netlify.app/): vue d'ensemble immersive de l'hôtel et du lieu
 - [L'essence du lieu](https://innside-fuerteventura.netlify.app/#arrival): refuge bohème-chic face à l'Atlantique sauvage
-- [The Studio vue mer](https://innside-fuerteventura.netlify.app/#suite): catégorie de chambre signature, 54 m², baignoire îlot, balcon vitré
+- [INNSiDE Room vue mer](https://innside-fuerteventura.netlify.app/#suite): chambre testée, 48 m², balcon vue océan, minibar gratuit
 - [Carnet visuel](https://innside-fuerteventura.netlify.app/#gallery): galerie photo du séjour
 - [Soirées live](https://innside-fuerteventura.netlify.app/#live): musique acoustique hebdomadaire
 - [Les glisses à Sotavento](https://innside-fuerteventura.netlify.app/#glisse): kitesurf, wingfoil, windsurf au centre René Egli by Meliá
