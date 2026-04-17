@@ -189,18 +189,29 @@
       "@type": "HotelRoom",
       "@id": "https://innside-fuerteventura.netlify.app/#room-studio-seaview",
       "name": "The Studio avec vue sur la mer",
-      "description": "Studio de 54 m² réunissant chambre, petit salon, baignoire îlot et balcon vitré donnant sur l'océan Atlantique. Vue mer directe sur la lagune de Sotavento.",
+      "description": "Studio de 54 m² avec balcon et terrasse donnant sur la plage de Sotavento. Minibar de courtoisie réapprovisionné quotidiennement, sélection Nespresso, Chromecast, haut-parleur Bluetooth de luxe, tapis de yoga. 1 lit double ou 2 lits simples, matelas Dreammaker, draps 300 fils, peignoir Innside®.",
       "occupancy": { "@type": "QuantitativeValue", "maxValue": 2 },
       "floorSize": { "@type": "QuantitativeValue", "value": 54, "unitCode": "MTK" },
-      "bed": { "@type": "BedDetails", "numberOfBeds": 1, "typeOfBed": "King" },
+      "bed": [
+        { "@type": "BedDetails", "numberOfBeds": 1, "typeOfBed": "Double" },
+        { "@type": "BedDetails", "numberOfBeds": 2, "typeOfBed": "Single" }
+      ],
       "amenityFeature": [
-        { "@type": "LocationFeatureSpecification", "name": "Vue mer", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Baignoire îlot", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Balcon vitré", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Minibar gratuit réapprovisionné", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Climatisation régulable", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Vue sur l'océan", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Balcon", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Terrasse", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Canapé-lit double", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Minibar de courtoisie réapprovisionné", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Machine Nespresso et bouilloire", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Chromecast et TV écran plat", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Haut-parleur Bluetooth de luxe", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Tapis de yoga", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Matelas Dreammaker et draps 300 fils", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Peignoir et pantoufles Innside®", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Climatisation à commande individuelle", "value": true },
         { "@type": "LocationFeatureSpecification", "name": "Coffre-fort", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Insonorisation", "value": true }
+        { "@type": "LocationFeatureSpecification", "name": "Rideaux occultants", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Chambre non-fumeurs", "value": true }
       ]
     },
     {
@@ -253,7 +264,7 @@
           "name": "Quelle catégorie de chambre choisir à l'INNSiDE Fuerteventura ?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Les chambres avec vue mer sont systématiquement recommandées par US News et Tripadvisor. The Studio avec vue sur la mer, 54 m², offre le meilleur compromis : baignoire îlot face à l'océan, petit salon, balcon vitré qui protège du vent de Sotavento. Les catégories supérieures incluent The Beach House (85 m², deux terrasses) et The Studio Mer & Jardin (54 m², terrasse-jardin privative)."
+            "text": "Les chambres avec vue mer sont systématiquement recommandées par US News et Tripadvisor. The Studio avec vue sur la mer, 54 m², offre un bon équilibre : balcon et terrasse donnant sur la plage de Sotavento, canapé-lit double, minibar de courtoisie réapprovisionné, Nespresso, Chromecast et tapis de yoga. Les catégories supérieures incluent The Beach House (85 m², deux terrasses) et The Studio avec vue sur la mer et jardin (54 m², baignoire îlot et terrasse-jardin privative)."
           }
         },
         {
@@ -2192,33 +2203,39 @@ footer {
       <div class="suite-body reveal">
         <h3>Studio · 54 m²</h3>
         <p class="lead">
-          Un espace unique qui réunit chambre, petit salon, baignoire îlot et balcon vitré
-          donnant directement sur l'océan Atlantique. Pour un séjour
-          <em>relaxant et suspendu</em>.
+          Détendez-vous dans ce studio. Améliorez votre bien-être sur la terrasse avec une vue
+          <em>spectaculaire</em> sur le sable fin et doré de Sotavento. Profitez du minibar gratuit,
+          réapprovisionné une fois par jour, ainsi que d'une sélection de cafés et thés Nespresso
+          dans la chambre.
         </p>
 
         <div class="suite-specs">
           <div class="spec"><span>Surface</span><strong>54 m²</strong></div>
-          <div class="spec"><span>Couchage</span><strong>1 king · 2 singles</strong></div>
+          <div class="spec"><span>Couchage</span><strong>1 lit double · 2 lits simples</strong></div>
           <div class="spec"><span>Vue</span><strong>Océan Atlantique</strong></div>
-          <div class="spec"><span>Balcon</span><strong>Vitré / baie</strong></div>
+          <div class="spec"><span>Extérieur</span><strong>Balcon / terrasse</strong></div>
         </div>
 
         <div class="suite-features">
-          <div>◦ Baignoire îlot vue mer</div>
-          <div>◦ Petit salon intégré</div>
-          <div>◦ Minibar gratuit réapprovisionné</div>
-          <div>◦ Articles écoresponsables</div>
+          <div>◦ Bain chaud & moussant</div>
+          <div>◦ Canapé-lit double</div>
+          <div>◦ Minibar de courtoisie réapprovisionné</div>
+          <div>◦ Nespresso · cafés & thés</div>
+          <div>◦ Chromecast · TV écran plat</div>
+          <div>◦ Haut-parleur Bluetooth de luxe</div>
+          <div>◦ Tapis de yoga</div>
+          <div>◦ Matelas Dreammaker · draps 300 fils</div>
+          <div>◦ Peignoir & pantoufles Innside®</div>
           <div>◦ Climatisation régulable</div>
-          <div>◦ Wi-Fi haut débit</div>
-          <div>◦ TV écran plat</div>
-          <div>◦ Coffre-fort & insonorisation</div>
+          <div>◦ Coffre-fort & rideaux occultants</div>
+          <div>◦ Wi-Fi haut débit · chambre non-fumeurs</div>
         </div>
 
         <div class="suite-tip">
           <span class="suite-tip-label">Conseil voyageurs</span>
-          Les chambres côté mer sont celles que recommandent systématiquement US News et Tripadvisor.
-          Le balcon vitré permet de profiter de la vue même par vent soutenu à Sotavento.
+          Depuis le balcon, on peut observer les vagues, les véliplanchistes et les adeptes de
+          wingfoil et de kitesurf sur la lagune. Les chambres côté mer sont celles que recommandent
+          systématiquement US News et Tripadvisor.
         </div>
       </div>
     </div>
@@ -2613,7 +2630,7 @@ footer {
       <details class="faq-item">
         <summary>Quelle catégorie de chambre choisir ?</summary>
         <div class="faq-answer">
-          <p>Les chambres avec vue mer sont systématiquement recommandées par les guides indépendants (US News, Tripadvisor). <strong>The Studio avec vue sur la mer</strong>, 54 m², offre le meilleur rapport qualité-espace : baignoire îlot face à l'océan, petit salon, balcon vitré qui protège du vent de Sotavento. Les catégories supérieures incluent The Beach House (85 m², deux terrasses) et The Studio Mer & Jardin (54 m², terrasse-jardin privative).</p>
+          <p>Les chambres avec vue mer sont systématiquement recommandées par les guides indépendants (US News, Tripadvisor). <strong>The Studio avec vue sur la mer</strong>, 54 m², offre un bon équilibre : balcon et terrasse donnant sur la plage de Sotavento, canapé-lit double, minibar de courtoisie réapprovisionné, Nespresso, Chromecast, tapis de yoga. Les catégories supérieures incluent The Beach House (85 m², deux terrasses) et The Studio avec vue sur la mer et jardin (54 m², baignoire îlot et terrasse-jardin privative).</p>
         </div>
       </details>
 
