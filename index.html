@@ -1230,8 +1230,352 @@ footer {
 }
 
 /* ============================================================
-   RESPONSIVE
+   GLISSES — Wingfoil / Kitesurf / Windsurf
    ============================================================ */
+.glide-hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  background: var(--bg);
+}
+
+.glide-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.glide-hero-media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+  transition: transform 15s ease-out;
+}
+
+.glide-hero.in .glide-hero-media img {
+  transform: scale(1);
+}
+
+.glide-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(180deg,
+      rgba(10,10,10,0.5) 0%,
+      rgba(10,10,10,0) 35%,
+      rgba(10,10,10,0) 55%,
+      rgba(10,10,10,0.9) 100%);
+}
+
+.glide-hero-content {
+  position: relative;
+  z-index: 3;
+  padding: 0 var(--edge) 7rem;
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.glide-hero-content h2 {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(3rem, 9vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin: 1.5rem 0 2rem;
+  max-width: 1100px;
+}
+
+.glide-hero-content h2 em {
+  font-style: italic;
+  color: var(--gold);
+  font-variation-settings: "opsz" 144;
+}
+
+.glide-hero-content p {
+  max-width: 540px;
+  color: var(--fg-dim);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* ---------- Spot data ---------- */
+.spot-data {
+  background: var(--bg);
+  padding: 10rem var(--edge);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.spot-data-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.spot-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.spot-title {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(2.5rem, 5.5vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 2rem;
+}
+
+.spot-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.spot-intro {
+  color: var(--fg-dim);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  max-width: 460px;
+}
+
+.spot-intro strong {
+  color: var(--fg);
+  font-weight: 500;
+}
+
+.spot-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.08);
+  padding: 1px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.spot-stat {
+  background: var(--bg);
+  padding: 2rem 1.5rem;
+  transition: background 0.4s;
+}
+
+.spot-stat:hover { background: var(--bg-elev); }
+
+.spot-stat-num {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+}
+
+.spot-stat-num span {
+  font-size: 0.4em;
+  color: var(--fg-faint);
+  font-weight: 300;
+  letter-spacing: 0;
+}
+
+.spot-stat-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  font-weight: 500;
+}
+
+/* ---------- Disciplines triptyque ---------- */
+.disciplines {
+  background: var(--bg);
+  padding: 10rem var(--edge);
+}
+
+.disciplines-header {
+  max-width: var(--max);
+  margin: 0 auto 5rem;
+}
+
+.disciplines-header h2 {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.disciplines-header h2 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.disciplines-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.discipline {
+  background: var(--bg-elev);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.6s var(--ease);
+}
+
+.discipline:hover {
+  transform: translateY(-8px);
+}
+
+.discipline-img {
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  position: relative;
+}
+
+.discipline-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 1.5s var(--ease), filter 0.6s;
+  filter: brightness(0.9) contrast(1.05);
+}
+
+.discipline:hover .discipline-img img {
+  transform: scale(1.06);
+  filter: brightness(1) contrast(1.05);
+}
+
+.discipline-body {
+  padding: 2rem 2rem 2.5rem;
+  position: relative;
+}
+
+.discipline-counter {
+  font-family: var(--font-mono);
+  color: var(--gold);
+  opacity: 0.6;
+  font-size: 0.9rem;
+  letter-spacing: 0.3em;
+  margin-bottom: 1rem;
+}
+
+.discipline h3 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 2.2rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.discipline p {
+  color: var(--fg-dim);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.discipline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.discipline-tags span {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50px;
+  color: var(--fg-dim);
+}
+
+/* ---------- Shop scene — plein écran fermeture ---------- */
+.shop-scene {
+  position: relative;
+  min-height: 90vh;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.shop-scene-inner {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: flex-end;
+}
+
+.shop-scene-inner img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.shop-scene-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(180deg,
+    rgba(10,10,10,0.5) 0%,
+    rgba(10,10,10,0.3) 40%,
+    rgba(10,10,10,0.9) 100%);
+}
+
+.shop-scene-content {
+  position: relative;
+  z-index: 3;
+  padding: 6rem var(--edge);
+  max-width: var(--max);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.shop-scene-content h3 {
+  font-family: var(--font-display);
+  font-weight: 200;
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin: 1rem 0 1.5rem;
+}
+
+.shop-scene-content h3 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.shop-scene-content p {
+  color: var(--fg-dim);
+  max-width: 560px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.shop-scene-content p em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+
 @media (max-width: 968px) {
   .nav-links a:not(.nav-cta) { display: none; }
   .arrival { grid-template-columns: 1fr; min-height: auto; }
@@ -1264,6 +1608,13 @@ footer {
   .suite-features { grid-template-columns: 1fr; }
   .sticky-scene { height: auto; }
   .sticky-scene-inner { position: relative; height: 80vh; }
+  .spot-data { padding: 6rem var(--edge); }
+  .spot-data-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .spot-grid { grid-template-columns: repeat(2, 1fr); }
+  .disciplines { padding: 6rem var(--edge); }
+  .disciplines-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .discipline-img { aspect-ratio: 16/10; }
+  .shop-scene-content { padding: 4rem var(--edge); }
   footer { flex-direction: column; text-align: center; }
 }
 
@@ -1291,6 +1642,7 @@ footer {
     <a href="#suite">La suite</a>
     <a href="#gallery">Carnet</a>
     <a href="#live">Live</a>
+    <a href="#glisse">Glisse</a>
     <a href="#ratings">Avis</a>
     <a href="#cta" class="nav-cta">Réserver</a>
   </div>
@@ -1454,6 +1806,158 @@ footer {
       Musique live chaque semaine — swing & jive le mercredi, pop rock acoustique vendredi
       et samedi. Entrée gratuite, ciel étoilé, chauffages extérieurs dorés.
     </p>
+  </div>
+</section>
+
+<!-- ============ GLISSES — Chapitre dédié ============ -->
+
+<!-- Intro : fond kitesurf plein écran -->
+<section class="glide-hero" id="glisse">
+  <div class="glide-hero-media">
+    <img src="photos/melia_kitesurf_sotavento.jpg" alt="Kitesurfers sur la plage de Sotavento" loading="lazy">
+  </div>
+  <div class="glide-hero-overlay"></div>
+  <div class="glide-hero-content">
+    <div class="chapter-kicker reveal" style="color: var(--gold);">Chapitre 04.5 — Les glisses</div>
+    <h2 class="reveal">
+      Sotavento, <em>capitale</em><br>mondiale du vent.
+    </h2>
+    <p class="reveal">
+      5 km de lagune intermittente, des eaux peu profondes, un alizé régulier de mai à octobre.
+      Le centre <strong style="color: var(--gold); font-weight: 400;">René Egli by Meliá</strong>,
+      à deux pas de l'hôtel, est une référence mondiale depuis 40 ans.
+    </p>
+  </div>
+</section>
+
+<!-- Sticky scene : data-driven, tech spec du spot -->
+<section class="spot-data">
+  <div class="spot-data-inner">
+    <div class="spot-col reveal">
+      <div class="spot-label">Le spot · Sotavento</div>
+      <h3 class="spot-title">Des <em>conditions</em><br>idéales.</h3>
+      <p class="spot-intro">
+        Une des rares lagunes au monde où l'eau peu profonde rencontre un vent thermique
+        constant. C'est ici que se tient chaque année la <strong>Coupe du Monde PWA</strong>
+        de windsurf et wingfoil.
+      </p>
+    </div>
+
+    <div class="spot-grid reveal-stagger">
+      <div class="spot-stat">
+        <div class="spot-stat-num">5<span>km</span></div>
+        <div class="spot-stat-label">Plage continue</div>
+      </div>
+      <div class="spot-stat">
+        <div class="spot-stat-num">18<span>→30</span></div>
+        <div class="spot-stat-label">Nœuds · mai-oct</div>
+      </div>
+      <div class="spot-stat">
+        <div class="spot-stat-num">300<span>j</span></div>
+        <div class="spot-stat-label">De soleil par an</div>
+      </div>
+      <div class="spot-stat">
+        <div class="spot-stat-num">22°<span>C</span></div>
+        <div class="spot-stat-label">Eau toute l'année</div>
+      </div>
+      <div class="spot-stat">
+        <div class="spot-stat-num">40<span>ans</span></div>
+        <div class="spot-stat-label">René Egli depuis 1984</div>
+      </div>
+      <div class="spot-stat">
+        <div class="spot-stat-num">0<span>.2km</span></div>
+        <div class="spot-stat-label">De l'hôtel au spot</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Triptyque des disciplines : bento full-bleed 3 colonnes -->
+<section class="disciplines">
+  <div class="disciplines-header reveal">
+    <div class="chapter-kicker">Trois disciplines, une lagune</div>
+    <h2>Le vent <em>parle</em><br>plusieurs langues.</h2>
+  </div>
+
+  <div class="disciplines-grid">
+    <article class="discipline reveal">
+      <div class="discipline-img">
+        <img src="photos/melia_kitesurf_sotavento.jpg" alt="Kitesurf à Sotavento" loading="lazy">
+      </div>
+      <div class="discipline-body">
+        <div class="discipline-counter">01</div>
+        <h3>Kitesurf</h3>
+        <p>
+          Des voiles de toutes les couleurs qui dansent au-dessus de la lagune.
+          Cours débutants possibles dès 8 ans de marche et 2 mètres de profondeur —
+          rare privilège mondial.
+        </p>
+        <div class="discipline-tags">
+          <span>Niveau tous</span>
+          <span>Eau peu profonde</span>
+          <span>Vent flat</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="discipline reveal">
+      <div class="discipline-img">
+        <img src="photos/melia_voile_mer.jpg" alt="Windsurf / wingfoil" loading="lazy">
+      </div>
+      <div class="discipline-body">
+        <div class="discipline-counter">02</div>
+        <h3>Wingfoil</h3>
+        <p>
+          La nouvelle glisse. Une aile tenue à la main, une planche à foil qui décolle
+          de l'eau : la sensation de voler. Sotavento est considéré comme le meilleur
+          spot d'apprentissage en Europe.
+        </p>
+        <div class="discipline-tags">
+          <span>État de l'art</span>
+          <span>Foil école</span>
+          <span>Progression rapide</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="discipline reveal">
+      <div class="discipline-img">
+        <img src="photos/melia_parasailing.jpg" alt="Parasailing" loading="lazy">
+      </div>
+      <div class="discipline-body">
+        <div class="discipline-counter">03</div>
+        <h3>Windsurf</h3>
+        <p>
+          Le patrimoine de Sotavento. C'est ici que se sont écrites les pages les plus
+          mythiques du windsurf mondial. Matériel dernier cri, du slalom au freeride,
+          professeurs multilingues.
+        </p>
+        <div class="discipline-tags">
+          <span>PWA World Cup</span>
+          <span>Matériel 2026</span>
+          <span>Coaching vidéo</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Full-bleed immersif final : le shop René Egli -->
+<section class="shop-scene">
+  <div class="shop-scene-inner">
+    <img src="photos/melia_rene_egli_shop.jpg" alt="Boutique René Egli by Meliá" loading="lazy">
+    <div class="shop-scene-overlay"></div>
+    <div class="shop-scene-content reveal">
+      <div class="chapter-kicker" style="color: var(--gold);">René Egli by Meliá · depuis 1984</div>
+      <h3>
+        <em>40 ans</em><br>d'expertise pure.
+      </h3>
+      <p>
+        Matériel dernier cri, moniteurs IKO/VDWS certifiés, cours en anglais, allemand,
+        français, espagnol, italien. Déposé comme <em>école de référence</em> par la
+        PWA et IWO.
+      </p>
+    </div>
   </div>
 </section>
 
@@ -1703,7 +2207,7 @@ footer {
     rootMargin: '0px 0px -80px 0px'
   });
 
-  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
+  document.querySelectorAll('.reveal, .reveal-stagger, .glide-hero').forEach(el => {
     revealObserver.observe(el);
   });
 
