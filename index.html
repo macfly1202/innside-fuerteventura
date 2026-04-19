@@ -99,7 +99,7 @@
         "https://innside-fuerteventura.netlify.app/photos/hero_sotavento.jpg",
         "https://innside-fuerteventura.netlify.app/photos/architecture_verriere.jpg",
         "https://innside-fuerteventura.netlify.app/photos/entree_hotel_aube.jpg",
-        "https://innside-fuerteventura.netlify.app/photos/studio_vue_mer_terrasse.jpg",
+        "https://innside-fuerteventura.netlify.app/photos/innside_room_vue_mer.jpg",
         "https://innside-fuerteventura.netlify.app/photos/melia_kitesurf_sotavento.jpg"
       ],
       "starRating": { "@type": "Rating", "ratingValue": "4" },
@@ -1728,6 +1728,48 @@ footer {
   object-fit: cover;
 }
 
+/* Tap-to-play button — shown when autoplay is blocked (mobile, Low Power Mode, Chrome iOS) */
+.glide-hero-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  z-index: 3;
+  width: 88px;
+  height: 88px;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.3s ease;
+  pointer-events: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.glide-hero-play svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 8px 32px rgba(0,0,0,0.4));
+  animation: playPulse 2.5s ease-in-out infinite;
+}
+.glide-hero-play.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.glide-hero-play:active {
+  transform: translate(-50%, -50%) scale(0.92);
+}
+.glide-hero-play:hover svg circle {
+  fill: rgba(0,0,0,0.75);
+}
+@keyframes playPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+@media (max-width: 768px) {
+  .glide-hero-play { width: 76px; height: 76px; }
+}
+
 .glide-hero-overlay {
   position: absolute;
   inset: 0;
@@ -2193,7 +2235,7 @@ footer {
 
     <div class="suite-grid">
       <div class="suite-main-img reveal">
-        <img src="https://dam.melia.com/melia/accounts/f8/4000018/projects/127/assets/39/87935/53d5b941dce2587504a93e4f9303b284-1646296927.jpg" alt="INNSiDE Room avec vue sur la mer à l'INNSiDE Fuerteventura, terrasse avec bain de soleil face à la lagune de Sotavento" loading="lazy">
+        <img src="photos/innside_room_vue_mer.jpg" alt="Intérieur de l'INNSiDE Room avec vue sur la mer à l'INNSiDE Fuerteventura, design bohème-chic, baie vitrée ouverte sur la lagune de Sotavento" loading="lazy">
       </div>
 
       <div class="suite-body reveal">
@@ -2266,7 +2308,9 @@ footer {
     muted
     loop
     playsinline
-    preload="metadata"
+    webkit-playsinline
+    autoplay
+    preload="auto"
     poster="photos/concert_video_poster.jpg"
     data-autoplay>
     <source src="photos/concert_short.mp4" type="video/mp4">
@@ -2292,14 +2336,22 @@ footer {
       muted
       loop
       playsinline
-      preload="metadata"
+      webkit-playsinline
+      autoplay
+      preload="auto"
       poster="photos/glisse_hero_poster.jpg"
       data-autoplay
       aria-label="Séquence wingfoil sur la lagune de Sotavento — vue aérienne">
-      <source src="photos/glisse_hero.webm" type="video/webm">
       <source src="photos/glisse_hero.mp4" type="video/mp4">
+      <source src="photos/glisse_hero.webm" type="video/webm">
       <img src="photos/glisse_hero_poster.jpg" alt="Wingfoiler sur la lagune de Sotavento, vue aérienne">
     </video>
+    <button class="glide-hero-play" aria-label="Lire la vidéo" hidden>
+      <svg viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">
+        <circle cx="24" cy="24" r="22" fill="rgba(0,0,0,0.5)" stroke="rgba(255,255,255,0.8)" stroke-width="1.5"/>
+        <path d="M18 15 L34 24 L18 33 Z" fill="#fff"/>
+      </svg>
+    </button>
   </div>
   <div class="glide-hero-overlay"></div>
   <div class="glide-hero-content">
@@ -2788,29 +2840,132 @@ footer {
     revealObserver.observe(el);
   });
 
-  // === Video autoplay when in viewport ===
+  // === Video autoplay — robust strategy for all browsers including Chrome iOS ===
   const videos = document.querySelectorAll('video[data-autoplay]');
+
+  const ua = navigator.userAgent;
+  const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isAndroid = /Android/.test(ua);
+  const isMobile = isIOS || isAndroid || window.matchMedia('(pointer: coarse)').matches;
+
+  videos.forEach(v => {
+    v.muted = true;
+    v.defaultMuted = true;
+    v.playsInline = true;
+    v.setAttribute('playsinline', '');
+    v.setAttribute('webkit-playsinline', '');
+    v.setAttribute('muted', '');
+    if (isIOS) v.setAttribute('autoplay', '');
+  });
+
+  function attemptPlay(v) {
+    try {
+      const p = v.play();
+      return (p && p.then) ? p.then(() => true).catch(() => false) : Promise.resolve(true);
+    } catch(e) { return Promise.resolve(false); }
+  }
+
+  function bindPlayButton(v) {
+    const btn = v.parentElement.querySelector('.glide-hero-play');
+    if (!btn) return null;
+    btn.hidden = false;
+    // Click handler: play the video, hide the button
+    const onClick = () => {
+      try { v.load(); } catch(e) {}
+      v.play().then(() => {
+        btn.classList.remove('visible');
+        setTimeout(() => { btn.hidden = true; }, 500);
+      }).catch(() => {
+        // play still refused — keep the button visible
+      });
+    };
+    btn.addEventListener('click', onClick);
+    btn.addEventListener('touchend', onClick, { passive: true });
+    return btn;
+  }
+
+  function showBtn(btn) {
+    if (!btn) return;
+    btn.hidden = false;
+    requestAnimationFrame(() => btn.classList.add('visible'));
+  }
+  function hideBtn(btn) {
+    if (!btn) return;
+    btn.classList.remove('visible');
+    setTimeout(() => { btn.hidden = true; }, 500);
+  }
+
+  // Bind buttons upfront (shown conditionally later)
+  const btnMap = new WeakMap();
+  videos.forEach(v => {
+    const btn = bindPlayButton(v);
+    if (btn) btnMap.set(v, btn);
+  });
+
+  // First-gesture unlock for iOS: any touch/click activates autoplay for the session
+  let userHasInteracted = false;
+  function markInteraction() {
+    userHasInteracted = true;
+    videos.forEach(v => {
+      if (v.paused) {
+        attemptPlay(v).then(ok => {
+          if (ok) hideBtn(btnMap.get(v));
+        });
+      }
+    });
+  }
+  ['touchend', 'click', 'pointerdown'].forEach(ev => {
+    window.addEventListener(ev, markInteraction, { once: true, passive: true, capture: true });
+  });
+
+  // Main observer: try to play when in viewport
   const videoObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const v = entry.target;
+      const btn = btnMap.get(v);
       if (entry.isIntersecting) {
-        // Only attempt play when enough is buffered
-        const tryPlay = () => {
-          v.play().catch(() => {
-            // autoplay blocked, ignore — the poster stays
-          });
-        };
-        if (v.readyState >= 2) tryPlay();
-        else v.addEventListener('loadeddata', tryPlay, { once: true });
+        try { v.load(); } catch(e) {}
+        attemptPlay(v).then(success => {
+          if (success) {
+            hideBtn(btn);
+          } else {
+            // Autoplay refused — show the play button
+            showBtn(btn);
+            // On iOS, retry once buffer is ready
+            const retry = () => {
+              attemptPlay(v).then(ok => { if (ok) hideBtn(btn); });
+            };
+            v.addEventListener('loadeddata', retry, { once: true });
+            v.addEventListener('canplay', retry, { once: true });
+          }
+        });
       } else {
         v.pause();
       }
     });
   }, {
-    threshold: 0.35,
+    threshold: 0.15,
+    rootMargin: '100px 0px',
   });
 
   videos.forEach(v => videoObserver.observe(v));
+
+  // On mobile, proactively show the play button after 1s if video hasn't started
+  // (covers the case where observer triggers but play() silently fails without rejection)
+  if (isMobile) {
+    videos.forEach(v => {
+      setTimeout(() => {
+        const btn = btnMap.get(v);
+        if (v.paused && !v.ended) {
+          const rect = v.getBoundingClientRect();
+          const visible = rect.top < window.innerHeight && rect.bottom > 0;
+          if (visible) showBtn(btn);
+        }
+      }, 1500);
+    });
+  }
+
+
 
   // === Smooth anchor nav (respect native smooth if supported) ===
   document.querySelectorAll('a[href^="#"]').forEach(link => {
